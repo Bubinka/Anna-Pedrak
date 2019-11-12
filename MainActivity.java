@@ -1,56 +1,60 @@
-package com.example.eventhandling;
+package com.example.gcf;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.content.Intent;
 import android.view.View;
-import android.widget.Toast;
+import android.text.TextUtils;
+import android.util.Log;
+import android.widget.EditText;
+import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+
+    private EditText fno;
+    private EditText sno;
+    private Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ButtonHandler buttonHandler = new ButtonHandler();
-
-        findViewById(R.id.button1).setOnClickListener(buttonHandler);
-        findViewById(R.id.button2).setOnClickListener(buttonHandler);
-        findViewById(R.id.button3).setOnClickListener(buttonHandler);
+        fno = (EditText)findViewById(R.id.firstno);
+        sno = (EditText)findViewById(R.id.secondno);
+        btn = (Button)findViewById(R.id.button);
+        btn.setOnClickListener(this);
     }//
 
-    private class ButtonHandler implements View.OnClickListener {
+    @Override
 
-        @Override
+    protected void onStart(){
 
-        public void onClick(View view) {
+        super.onStart();
+        fno.setText("");
+        sno.setText("");
+    }//
 
+    public void onClick(View view){
 
-            switch(view.getId()) {
+        boolean a = TextUtils.isEmpty(fno.getText());
+        boolean b = TextUtils.isEmpty(sno.getText());
 
-                case R.id.button1:
-                    show("Button One");
-                    break;
+        if(!a & !b) {
 
-                case R.id.button2:
-                    show("Button Two");
-                    break;
+            int firstnumber = Integer.parseInt(fno.getText().toString());
+            int secondnumber = Integer.parseInt(sno.getText().toString());
 
-                case R.id.button3:
-                    show("Button Three");
-                    break;
-                    default:
-                        show("This should not happen!");
-            }
+            Intent intent = new Intent(this,CalculateActivity.class);
+
+            Bundle bundle = new Bundle();
+
+            bundle.putInt("fno", firstnumber);
+            bundle.putInt("sno", secondnumber);
+            intent.putExtra("gcfdata",bundle);
+            startActivity(intent);
+
         }
-    }//
-
-    void show(String messagr) {
-
-        String message = new String();
-        Toast.makeText(this,message,Toast.LENGTH_LONG).show();
-        Log.i(getClass().getName(),message);
     }
 }
