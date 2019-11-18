@@ -1,60 +1,55 @@
-package com.example.gcf;
+package com.example.implicitinents;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.content.Intent;
-import android.view.View;
-import android.text.TextUtils;
+import android.net.Uri;
 import android.util.Log;
-import android.widget.EditText;
-import android.widget.Button;
+import android.view.View;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-
-    private EditText fno;
-    private EditText sno;
-    private Button btn;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fno = (EditText)findViewById(R.id.firstno);
-        sno = (EditText)findViewById(R.id.secondno);
-        btn = (Button)findViewById(R.id.button);
-        btn.setOnClickListener(this);
-    }//
+        findViewById(R.id.btnwebaddress).setOnClickListener(this);
+        findViewById(R.id.btnmap).setOnClickListener(this);
+        findViewById(R.id.btnphonenumber).setOnClickListener(this);
+    }
 
     @Override
 
-    protected void onStart(){
-
-        super.onStart();
-        fno.setText("");
-        sno.setText("");
-    }//
-
     public void onClick(View view){
 
-        boolean a = TextUtils.isEmpty(fno.getText());
-        boolean b = TextUtils.isEmpty(sno.getText());
+        Uri uri = null;
+        Intent intent = null;
 
-        if(!a & !b) {
+        switch(view.getId()) {
 
-            int firstnumber = Integer.parseInt(fno.getText().toString());
-            int secondnumber = Integer.parseInt(sno.getText().toString());
+            case R.id.btnwebaddress:
+                uri = Uri.parse("http://www.apress.com");
+                intent = new Intent(Intent.ACTION_VIEW,uri);
+                startActivity(intent);
+                break;
 
-            Intent intent = new Intent(this,CalculateActivity.class);
+            case R.id.btnmap:
+                uri = Uri.parse("geo:40.7113399-74.0263469");
+                intent = new Intent(Intent.ACTION_VIEW,uri);
+                startActivity(intent);
+                break;
 
-            Bundle bundle = new Bundle();
+            case R.id.btnphonenumber:
 
-            bundle.putInt("fno", firstnumber);
-            bundle.putInt("sno", secondnumber);
-            intent.putExtra("gcfdata",bundle);
-            startActivity(intent);
+                uri = Uri.parse("tel: 639285083333");
+                intent = new Intent(Intent.ACTION_DIAL,uri);
+                startActivity(intent);
+                break;
+            default:
 
+                Log.i(getClass().getName(),"Cannot resolve button click");
         }
     }
 }
