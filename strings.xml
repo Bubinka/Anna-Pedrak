@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">LUAS Forecast</string>
+    <string name="given_i_am_luas_passenger_nwhen_i_open_the_app_from_00_00_12_00_nthen_i_should_see_trams_forecast_from_marlborough_luas_stop_towards_outbound">Given I am LUAS passenger\nWhen I open the app from 00:00-12:00\nThen I should see trams forecast from Marlborough LUAS stop towards Outbound</string>
+    <string name="given_i_am_a_luas_passenger_nwhen_i_open_the_app_from_12_01_23_59_nthen_i_should_see_trams_forecast_from_stillorgan_luas_stop_towards_inbound">Given I am a LUAS passenger\nWhen I open the app from 12:01-23:59\nThen I should see trams forecast from Stillorgan LUAS stop towards Inbound</string>
+    <string name="given_i_am_on_the_stop_forecast_info_screen_nwhen_i_tap_on_the_refresh_button_nthen_the_forecast_data_should_be_updated">Given I am on the stop forecast info screen\nWhen I tap on the refresh button\nThen the forecast data should be updated</string>
+</resources>
