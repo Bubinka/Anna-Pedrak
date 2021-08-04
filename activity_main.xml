@@ -4,52 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation= "vertical"
-    tools:context=".MainActivity">
+    android:orientation ="vertical"
+    android:padding="8dp"
+    android:background="@color/white"
+
+    tools:context=".MainActivity" >
+
+    <ImageView
+
+        android:id="@+id/hr_image"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+         android:src="@drawable/hr_image"
+        tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/textView"
+
+        android:id="@+id/title_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:padding="20dp"
-        android:textSize ="16sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:layout_marginTop="30dp"
-        android:maxLines="4"
-        android:text="@string/given_i_am_luas_passenger_nwhen_i_open_the_app_from_00_00_12_00_nthen_i_should_see_trams_forecast_from_marlborough_luas_stop_towards_outbound" />
+        android:text = "@string/portal"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textColor="#bbb7a7"
+        android:textSize="20sp"
+        android:textStyle="italic|bold"/>
 
     <TextView
-        android:id="@+id/textView2"
+
+        android:id="@+id/description_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:text="@string/applying_screening_interviewing_decision_offer"
+        android:layout_gravity="center"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        android:textColor="#0000ff"
+        android:gravity="center"/>
 
-        android:layout_marginTop="30dp"
 
-        android:maxLines="4"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-
-        android:text="@string/given_i_am_a_luas_passenger_nwhen_i_open_the_app_from_12_01_23_59_nthen_i_should_see_trams_forecast_from_stillorgan_luas_stop_towards_inbound" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:layout_marginTop="30dp"
-        android:padding="20dp"
-        android:maxLines="3"
-        android:text="@string/given_i_am_on_the_stop_forecast_info_screen_nwhen_i_tap_on_the_refresh_button_nthen_the_forecast_data_should_be_updated"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold" />
 </LinearLayout>
-
