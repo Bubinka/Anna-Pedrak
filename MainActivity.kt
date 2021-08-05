@@ -1,60 +1,31 @@
-package com.example.hrmeeting
+package com.example.sportdiscipline
 
-import android.content.Intent
+import android.graphics.ColorSpace
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.view.WindowManager
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import android.widget.ImageView
-import android.widget.TextView
-
-
-
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
-    //initialize varaiables
-
-    val SPLASH_SCREEN = 5000
-
-    private lateinit var topAnimation:Animation
-    private lateinit var bottomAnimation:Animation
-    private lateinit var imageView: ImageView
-    private lateinit var title_txt:TextView
-    private lateinit var description_txt:TextView
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //hide status bar
+        val arrayList = ArrayList<Model>()
+        arrayList.add(Model("Skiing","skiing desc",R.drawable.skiing))
+        arrayList.add(Model("Figure Skating","figure skating desc",R.drawable.figure_skating))
+        arrayList.add(Model("Cycling","cycling desc",R.drawable.cycling))
+        arrayList.add(Model("Football","football desc",R.drawable.football))
+        arrayList.add(Model("Horse Racing","horse racing desc",R.drawable.horse_racing))
+        arrayList.add(Model("Swimming","swimming desc",R.drawable.swimming))
 
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        val myAdapter = MyAdapter(arrayList,this)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = myAdapter
 
-        val actionBar = supportActionBar
-        actionBar!!.hide()
-
-        topAnimation = AnimationUtils.loadAnimation(this,R.anim.top_animation)
-        bottomAnimation = AnimationUtils.loadAnimation(this,R.anim.bottom_animation)
-        imageView = findViewById(R.id.hr_image)
-        title_txt = findViewById(R.id.title_text)
-        description_txt = findViewById(R.id.description_text)
-
-        imageView.animation = topAnimation
-        title_txt.animation = bottomAnimation
-        description_txt.animation = bottomAnimation
-
-        Handler().postDelayed( {
-
-            val intent= Intent (this,AnotherActivity::class.java)
-
-            startActivity(intent)
-
-            finish()
-
-        },SPLASH_SCREEN.toLong())
     }
-}//end class MainActivity
+}
+
+
+
+
