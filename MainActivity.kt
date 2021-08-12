@@ -1,31 +1,37 @@
-package com.example.sportdiscipline
+package com.example.dinnerrestaurant
 
-import android.graphics.ColorSpace
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.*
 import kotlinx.android.synthetic.main.activity_main.*
 
+
+import java.util.*
+
+
 class MainActivity : AppCompatActivity() {
+
+    //initialize variables
+
+    val foodList = arrayListOf("Chinese","Hamburger","Pizza","McDonalds","Barros Pizza","Mexico")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val arrayList = ArrayList<Model>()
-        arrayList.add(Model("Skiing","skiing desc",R.drawable.skiing))
-        arrayList.add(Model("Figure Skating","figure skating desc",R.drawable.figure_skating))
-        arrayList.add(Model("Cycling","cycling desc",R.drawable.cycling))
-        arrayList.add(Model("Football","football desc",R.drawable.football))
-        arrayList.add(Model("Horse Racing","horse racing desc",R.drawable.horse_racing))
-        arrayList.add(Model("Swimming","swimming desc",R.drawable.swimming))
+        decideBtn.setOnClickListener {
 
-        val myAdapter = MyAdapter(arrayList,this)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = myAdapter
+            val random = Random()
+            val randomFood = random.nextInt(foodList.count())
 
+            selectedFoodTxt.text = foodList[randomFood]
+        }
+
+        addFoodBtn.setOnClickListener {
+            val newFood = addFoodTxt.text.toString()
+            foodList.add(newFood)
+            addFoodTxt.text.clear()
+            println(foodList)
+        }
     }
 }
-
-
-
-
